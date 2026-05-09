@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auteuil — Formation Club House</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blanc1930: #F4F1EA;
+    --bleu-auteuil: #1B2D4F;
+    --bleu-night: #0D1824;
+    --bleu-mid: #243d6a;
+    --gold: #C9A96E;
+    --gold-light: #e8d5a8;
+    --white: #FDFCF8;
+    --green: #2d5a3d;
+    --red: #8b2020;
+    --text-light: rgba(244,241,234,0.65);
+    --text-mid: rgba(244,241,234,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bleu-night);
+    color: var(--blanc1930);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bleu-night);
+    border-bottom: 1px solid rgba(201,169,110,0.25);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* SVG inline logo */
+  .logo-svg {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(201,169,110,0.3);
+  }
+
+  .subtitle {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .header-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(244,241,234,0.25);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 40px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(27,45,79,0.6) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 60px);
+    font-weight: 400;
+    color: var(--blanc1930);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 14px;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ── NAV ── */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 40px 52px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: 1px solid rgba(201,169,110,0.2);
+    color: rgba(244,241,234,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-weight: 500;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .tab-btn.active {
+    background: var(--bleu-auteuil);
+    border-color: var(--bleu-auteuil);
+    color: var(--blanc1930);
+    font-weight: 600;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    display: none;
+    padding: 0 40px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeUp 0.35s ease;
+  }
+
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--blanc1930);
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 36px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .gold-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 44px;
+  }
+
+  .progress-step {
+    flex: 1;
+    height: 2px;
+    background: rgba(201,169,110,0.15);
+    transition: background 0.4s;
+  }
+
+  .progress-step.done { background: var(--gold); }
+
+  /* ── CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card {
+    background: rgba(27,45,79,0.35);
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 26px;
+    transition: border-color 0.3s;
+  }
+
+  .card:hover { border-color: rgba(201,169,110,0.35); }
+
+  .card-icon { font-size: 20px; margin-bottom: 12px; }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── FOUNDER BLOCK ── */
+  .founder-block {
+    background: rgba(27,45,79,0.5);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .founder-block h3 {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .founder-block p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  .founder-block em {
+    color: var(--blanc1930);
+    font-style: normal;
+  }
+
+  /* ── COLLECTIONS ── */
+  .coll-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 580px) { .coll-grid { grid-template-columns: 1fr; } }
+
+  .coll-card {
+    background: rgba(27,45,79,0.35);
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 24px;
+  }
+
+  .coll-tag {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+    display: block;
+  }
+
+  .coll-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--blanc1930);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .coll-card p {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .coll-pieces {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(201,169,110,0.12);
+    font-size: 11.5px;
+    color: var(--gold);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* ── TON ── */
+  .tone-bar {
+    background: rgba(27,45,79,0.4);
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 30px;
+    margin-bottom: 16px;
+  }
+
+  .tone-label {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  .spectrum {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .spectrum-end {
+    font-size: 10px;
+    color: rgba(244,241,234,0.35);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    min-width: 64px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .spectrum-bar {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(to right, rgba(139,32,32,0.6), var(--gold), rgba(139,32,32,0.6));
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .spectrum-marker {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 2px solid var(--bleu-night);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 580px) { .dont-grid { grid-template-columns: 1fr; } }
+
+  .do-card, .dont-card {
+    padding: 22px;
+  }
+
+  .do-card {
+    background: rgba(45,90,61,0.12);
+    border: 1px solid rgba(45,90,61,0.35);
+  }
+
+  .dont-card {
+    background: rgba(139,32,32,0.1);
+    border: 1px solid rgba(139,32,32,0.3);
+  }
+
+  .card-tag {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .do-card .card-tag { color: #6aab80; }
+  .dont-card .card-tag { color: #c07070; }
+
+  .do-card p { font-size: 12.5px; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+  .dont-card p { font-size: 12.5px; line-height: 1.8; color: var(--text-light); font-weight: 300; }
+
+  /* ── STYLE / DESIGN ── */
+  .style-block {
+    background: rgba(27,45,79,0.4);
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 28px 30px;
+    margin-bottom: 14px;
+  }
+
+  .style-block h3 {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .style-block p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .swatch-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.3);
+  }
+
+  .swatch-name {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 22px;
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.08);
+    align-items: start;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: rgba(201,169,110,0.25);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .step h3 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .step p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  .step-example {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(244,241,234,0.38);
+    border-left: 2px solid rgba(201,169,110,0.4);
+    padding-left: 12px;
+    line-height: 1.75;
+  }
+
+  /* ── SCENARIOS ── */
+  .scenario {
+    background: rgba(27,45,79,0.3);
+    border: 1px solid rgba(201,169,110,0.12);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .scenario-header:hover { background: rgba(27,45,79,0.5); }
+
+  .scenario-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .scenario-title { font-size: 13.5px; color: var(--blanc1930); font-weight: 400; }
+
+  .scenario-toggle {
+    color: var(--gold);
+    font-size: 20px;
+    transition: transform 0.3s;
+    min-width: 24px;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  .scenario-toggle.open { transform: rotate(45deg); }
+
+  .scenario-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid rgba(201,169,110,0.08);
+  }
+
+  .scenario-body.open { display: block; }
+
+  .dialogue { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+
+  .line {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .line-speaker {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+
+  .line-speaker.client { color: rgba(244,241,234,0.35); }
+  .line-speaker.staff { color: var(--gold); }
+
+  .line-text { font-size: 13px; line-height: 1.8; font-weight: 300; }
+  .line-text.staff-text { color: var(--blanc1930); }
+  .line-text.client-text { color: rgba(244,241,234,0.5); font-style: italic; }
+
+  .tip-box {
+    margin-top: 18px;
+    padding: 15px 18px;
+    background: rgba(201,169,110,0.07);
+    border-left: 2px solid var(--gold);
+  }
+
+  .tip-box p { font-size: 12px; color: var(--text-light); line-height: 1.75; font-weight: 300; }
+  .tip-box strong { color: var(--gold); font-weight: 500; }
+
+  /* ── LEXIQUE ── */
+  .lex-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 18px 10px;
+  }
+
+  .lex-header span {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .lex-header span:first-child { color: #c07070; }
+  .lex-header span:last-child { color: #6aab80; }
+
+  .lexique-grid { display: grid; gap: 10px; }
+
+  .lex-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 18px;
+    background: rgba(27,45,79,0.3);
+    border: 1px solid rgba(201,169,110,0.08);
+  }
+
+  @media (max-width: 580px) { .lex-item { grid-template-columns: 1fr; } }
+
+  .lex-avoid {
+    font-size: 12.5px;
+    color: #c07070;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .lex-avoid::before { content: '✕  '; font-size: 9px; opacity: 0.7; }
+
+  .lex-use {
+    font-size: 12.5px;
+    color: #6aab80;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .lex-use::before { content: '✓  '; font-size: 9px; opacity: 0.7; }
+
+  /* ── QUIZ ── */
+  .quiz-card {
+    background: rgba(27,45,79,0.35);
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 30px;
+    margin-bottom: 14px;
+  }
+
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--blanc1930);
+    margin-bottom: 22px;
+    line-height: 1.55;
+  }
+
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+
+  .quiz-option {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(244,241,234,0.65);
+    transition: all 0.2s;
+    text-align: left;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .quiz-option:hover:not(:disabled) {
+    border-color: var(--gold);
+    color: var(--blanc1930);
+    background: rgba(201,169,110,0.05);
+  }
+
+  .quiz-option.correct { background: rgba(45,90,61,0.18); border-color: #6aab80; color: #6aab80; }
+  .quiz-option.wrong { background: rgba(139,32,32,0.18); border-color: #c07070; color: #c07070; }
+  .quiz-option:disabled { cursor: default; }
+
+  .quiz-feedback {
+    display: none;
+    margin-top: 14px;
+    padding: 14px 18px;
+    font-size: 12.5px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: rgba(45,90,61,0.12); border-left: 2px solid #6aab80; color: var(--text-mid); }
+  .quiz-feedback.wrong { background: rgba(139,32,32,0.1); border-left: 2px solid #c07070; color: var(--text-mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 36px 40px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(244,241,234,0.18);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+<img src="data:image/png;base64,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" style="height:30px; width:auto; filter:invert(1);" alt="Auteuil">
+    <div class="header-divider"></div>
+    <div class="subtitle">Formation Club House</div>
+  </div>
+  <div class="header-tag">Usage interne</div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">Guide de formation — Équipe de vente</div>
+  <h1>L'art de <em>bien recevoir</em><br>chez Auteuil</h1>
+  <p>Vous êtes l'ambassadeur de la marque. Cette formation vous donne les clés pour accueillir chaque joueur avec la juste mesure — ni timide, ni arrogant, mais <em>délibéré</em>.</p>
+</div>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showTab('adn', this)">ADN de la marque</button>
+  <button class="tab-btn" onclick="showTab('style', this)">Style & Intemporalité</button>
+  <button class="tab-btn" onclick="showTab('ton', this)">Le bon ton</button>
+  <button class="tab-btn" onclick="showTab('approche', this)">Approche client</button>
+  <button class="tab-btn" onclick="showTab('scenarios', this)">Scénarios</button>
+  <button class="tab-btn" onclick="showTab('lexique', this)">À dire / À éviter</button>
+  <button class="tab-btn" onclick="showTab('marketing', this)">Questions difficiles</button>
+  <button class="tab-btn" onclick="showTab('quiz', this)">Quiz</button>
+</nav>
+
+<!-- ═══ ADN ═══ -->
+<section class="section active" id="adn">
+  <div class="progress-bar">
+    <div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">L'ADN d'Auteuil</h2>
+  <p class="section-desc">Avant d'accueillir un client, il faut comprendre ce que représente Auteuil — et pourquoi c'est fondamentalement différent.</p>
+
+  <div class="founder-block">
+    <h3>Les fondateurs</h3>
+    <p>Auteuil a été fondée par <em>Jean Leclercq et John Mollanger</em>, deux amis de longue date et joueurs de tennis passionnés. Ils sont également à l'origine de <em>Cinquième Set</em>, la boutique de référence du tennis premium, Avenue Kléber à Paris. Avant cela, ils ont tous deux travaillé dans l'industrie du sport et du luxe — notamment chez <em>Nike, Asics et Bang & Olufsen</em>. Ce bagage nourrit chaque décision de la marque : performance, design, et qualité d'exécution ne sont pas des mots — ce sont des réflexes.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🎾</div>
+      <h3>Le tennis comme style de vie</h3>
+      <p>Auteuil ne vend pas des vêtements de sport. Nous habillons des joueurs — sur le court, au club, en ville. Chaque pièce existe dans la vie du joueur exigeant, pas seulement pendant le match.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">✦</div>
+      <h3>Performance de luxe</h3>
+      <p>Le tennis est le seul grand sport sans sa marque performance-luxe. Auteuil comble ce vide : excellence fonctionnelle, finitions luxe, esthétique intemporelle. Ce n'est pas du marketing — c'est le positionnement.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Fair play</h3>
+      <p>Fabriqué en Europe. Matériaux naturels sélectionnés pour leur performance et leur durabilité. Conçu pour être réparé, pas remplacé. Nos engagements sont notre fonctionnement — pas un argument de vente.</p>
+    </div>
+  </div>
+
+  <div class="coll-grid" style="margin-top:16px;">
+    <div class="coll-card">
+      <span class="coll-tag">Collection Court</span>
+      <h3>L'élégance sublime la performance</h3>
+      <p>Haute performance pour le joueur compétitif. Technologie Supercontour : épaules structurées, hanches cintrées, liberté de mouvement totale. Matières naturelles — Lyocell pour le polo, Modal CMC pour la robe.</p>
+      <div class="coll-pieces">Robe Roma — 200€ &nbsp;·&nbsp; Polo Paris — 150€</div>
+    </div>
+    <div class="coll-card">
+      <span class="coll-tag">Collection Club</span>
+      <h3>L'extension d'une passion</h3>
+      <p>L'avant et l'après tennis. Sportswear unisexe en coton organique, coupes généreuses, inspiration collégiale. Pour s'échauffer, après la douche, en ville. Fabriqué pour se détendre sans perdre le style.</p>
+      <div class="coll-pieces">Pantalon Foro — 150€ &nbsp;·&nbsp; Sweat 8th Avenue — 150€</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STYLE & INTEMPORALITÉ ═══ -->
+<section class="section" id="style">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Style & Intemporalité</h2>
+  <p class="section-desc">Auteuil n'est pas une marque de mode. C'est une marque de style — ce qui est très différent. Voici comment expliquer cette distinction à un client.</p>
+
+  <div class="style-block">
+    <h3>L'intemporalité — ce que ça veut dire vraiment</h3>
+    <p>La mode change chaque saison. Le style, lui, traverse le temps. Un Polo Paris d'Auteuil doit être aussi juste à porter dans 10 ans qu'aujourd'hui. C'est un choix de design délibéré : pas de logo envahissant, pas de couleur criarde, pas de détail qui "date". Chaque pièce est pensée pour vieillir bien — comme une montre bien faite ou une bonne paire de chaussures.<br><br>
+    Quand un client dit "c'est sobre", c'est un compliment. C'est exactement l'intention.</p>
+  </div>
+
+  <div class="style-block">
+    <h3>Les couleurs de la marque</h3>
+    <p>Auteuil travaille avec une palette resserrée et cohérente — trois couleurs signature qui racontent l'histoire du tennis :</p>
+    <div class="color-swatches">
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#F4F1EA; border:1px solid rgba(201,169,110,0.5);"></div>
+        <div class="swatch-name">Blanc 1930</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#1B2D4F;"></div>
+        <div class="swatch-name">Bleu Auteuil</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#0D1824;"></div>
+        <div class="swatch-name">Bleu Night<br>Session</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">Le <strong style="color:var(--gold);">Blanc 1930</strong> évoque le tennis d'avant — élégant, épuré, intemporel. Le <strong style="color:var(--gold);">Bleu Auteuil</strong> est profond, discret, luxe. Le <strong style="color:var(--gold);">Bleu Night Session</strong> rappelle les matchs sous les projecteurs de Roland-Garros. Aucune de ces couleurs ne crie — elles affirment.</p>
+  </div>
+
+  <div class="style-block">
+    <h3>L'attention aux détails — comment en parler</h3>
+    <p>Un client qui tient un vêtement Auteuil doit pouvoir sentir la différence avant même de l'essayer. Guidez-le :<br><br>
+    — Les <em style="color:var(--blanc1930);">finitions de couture</em> : régulières, précises, rien qui dépasse.<br>
+    — Le <em style="color:var(--blanc1930);">tombé du tissu</em> : naturel, pas rigide, il suit le corps.<br>
+    — Le <em style="color:var(--blanc1930);">poids de la matière</em> : ni trop léger (cheap), ni trop lourd (inconfort). Juste.<br>
+    — L'<em style="color:var(--blanc1930);">absence de logo ostentatoire</em> : la marque se reconnaît à la coupe, pas au badge.<br><br>
+    C'est ce niveau d'attention qu'on appelle l'exécution sans faille.</p>
+  </div>
+
+  <div class="style-block">
+    <h3>Supercontour — raconter l'innovation</h3>
+    <p>Supercontour n'est pas un tissu. C'est une <em style="color:var(--blanc1930);">philosophie de coupe</em>. Épaules ajustées pour la mobilité du service. Hanches légèrement cintrées pour une silhouette propre. Manches structurées mais souples. Le joueur est libre dans ses mouvements sans jamais paraître "habillé sport".<br><br>
+    À dire au client : <em style="color:rgba(244,241,234,0.5); font-style:italic;">"La différence, vous la sentirez surtout en la portant sur le court — mais vous la voyez déjà dans la coupe."</em></p>
+  </div>
+</section>
+
+<!-- ═══ TON ═══ -->
+<section class="section" id="ton">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Le bon ton</h2>
+  <p class="section-desc">Le défi principal : trouver l'équilibre exact entre chaleur et excellence. Ni servile, ni condescendant. <em>Délibéré</em>.</p>
+
+  <div class="tone-bar" style="margin-bottom:16px;">
+    <div class="tone-label">Le spectre du ton</div>
+    <div class="spectrum">
+      <div class="spectrum-end">Timide<br>Effacé</div>
+      <div class="spectrum-bar"><div class="spectrum-marker"></div></div>
+      <div class="spectrum-end">Arrogant<br>Froid</div>
+    </div>
+    <p style="font-size:12px; color:var(--text-light); text-align:center; font-weight:300;">Auteuil se place légèrement du côté de la confiance — jamais de la condescendance.</p>
+  </div>
+
+  <div class="dont-grid">
+    <div class="dont-card">
+      <div class="card-tag">❌ Trop timide</div>
+      <p>Se précipiter à l'entrée. S'excuser de proposer de l'aide. Baisser le prix sans qu'on le demande. Ne pas assumer les choix de la marque face à une question difficile. Dire "je sais pas trop".</p>
+    </div>
+    <div class="dont-card">
+      <div class="card-tag">❌ Trop arrogant</div>
+      <p>Juger le niveau de jeu du client. Laisser entendre que les autres marques sont inférieures. Être distant avec quelqu'un qui ne connaît pas encore la marque. Faire sentir au client qu'il n'est "pas le bon profil".</p>
+    </div>
+    <div class="do-card" style="grid-column: 1 / -1;">
+      <div class="card-tag">✓ La juste posture — Délibéré</div>
+      <p>Vous accueillez comme un membre du club accueillerait un invité. Vous connaissez parfaitement ce que vous vendez et vous en êtes fier — sans le crier. Vous posez des questions intelligentes sur le jeu avant de proposer. Vous assumez les prix et les choix de la marque avec naturel, jamais sur la défensive. Vous êtes là pour servir une passion commune : le tennis.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px;">
+    <h3 style="margin-bottom:12px;">La règle d'or : la posture du passionné</h3>
+    <p>Imaginez que vous parlez à un ami joueur dans votre club. Vous lui recommandez quelque chose parce que vous l'aimez — pas parce que vous voulez lui vendre. C'est cet état d'esprit qu'il faut garder à chaque interaction. Le client doit repartir avec le sentiment que <em style="color:var(--gold);">vous avez vraiment pensé à lui</em>.</p>
+  </div>
+</section>
+
+<!-- ═══ APPROCHE ═══ -->
+<section class="section" id="approche">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Approche client</h2>
+  <p class="section-desc">Les 6 étapes d'une interaction réussie au Club House.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>L'accueil — laisser le client respirer</h3>
+        <p>Ne pas bondir à l'entrée. Laisser le client entrer, regarder, ressentir l'espace. Attendre 30 à 60 secondes. Puis un regard, un sourire discret, une phrase courte et ouverte.</p>
+        <div class="step-example">"Bonjour — n'hésitez pas si vous avez des questions."</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Qualifier — comprendre le joueur</h3>
+        <p>Avant de proposer quoi que ce soit, posez une question sur le jeu. Fréquence, niveau, club, surface préférée. Cela montre que vous écoutez et que votre conseil sera personnalisé — pas générique.</p>
+        <div class="step-example">"Vous jouez en club ? Plutôt sur terre battue ou en dur ?"</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Éduquer — raconter, pas vendre</h3>
+        <p>Expliquez le produit comme vous raconteriez quelque chose que vous aimez. La technologie Supercontour, les matières, l'origine. Ne listez pas des caractéristiques — racontez une intention de design.</p>
+        <div class="step-example">"Ce polo a été pensé pour rester impeccable même après un match serré — le Lyocell ne se déforme pas à la chaleur."</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h3>Assumer le prix — sans s'excuser</h3>
+        <p>Ne jamais introduire le prix avec une excuse ou une justification défensive. L'annoncer naturellement, puis laisser un silence. Si le client réagit, appuyez sur la durabilité et la qualité d'exécution — jamais sur une remise.</p>
+        <div class="step-example">"Le Polo Paris est à 150€ — c'est notre socle homme, conçu pour durer."</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <h3>Gérer les objections — avec du fond</h3>
+        <p>Face à "c'est cher", "c'est pas Nike", "je ne connais pas la marque" — répondez avec de la substance, pas de la défensive. Utilisez l'histoire, les matériaux, les fondateurs. Ne dénigrez jamais la concurrence.</p>
+        <div class="step-example">"C'est vrai qu'Auteuil est une marque jeune — fondée par des joueurs qui n'ont pas trouvé ce qu'ils cherchaient ailleurs."</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div>
+        <h3>Conclure — proposer, pas pousser</h3>
+        <p>Proposez l'essayage naturellement. Ne demandez jamais "vous achetez ?" directement. Si le client hésite, donnez-lui de l'espace et une raison de revenir — sans créer de pression.</p>
+        <div class="step-example">"Essayez-le, c'est souvent là que tout se décide." &nbsp;/&nbsp; "On est là tous les jours — repassez quand vous voulez."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCÉNARIOS ═══ -->
+<section class="section" id="scenarios">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Scénarios</h2>
+  <p class="section-desc">Jeux de rôle — cliquez pour dérouler chaque situation.</p>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Scénario 01 — Prix</div>
+        <div class="scenario-title">"150€ pour un polo, c'est cher."</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"C'est combien ce polo ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Le Polo Paris est à 150€."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"C'est quand même cher pour un polo de tennis."</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Je comprends. Ce qui le différencie, c'est la matière — du Lyocell, une fibre naturelle dérivée du bambou, qui reste fraîche plus longtemps qu'un polyester classique et qui ne retient pas les odeurs. Et il est fabriqué en Europe. C'est un polo pensé pour durer, pas pour être remplacé dans 18 mois."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Vous avez quelque chose de moins cher ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Notre gamme commence à ce niveau — c'est un choix délibéré de la marque. Mais essayez-le d'abord, ça change souvent la perspective."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> Ne jamais s'excuser du prix. Nommer les raisons concrètes — matière, fabrication, durabilité — naturellement. Proposer l'essayage plutôt qu'une réduction.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Scénario 02 — Comparaison</div>
+        <div class="scenario-title">"Pourquoi Auteuil plutôt que Nike ou Lacoste ?"</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Nike et Lacoste font du très bon tennis. Pourquoi choisir Auteuil ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Ce sont de très bonnes marques — Nike est excellente pour la performance pure, Lacoste pour le style classique. Auteuil, c'est les deux ensemble, avec un niveau d'exécution différent. Et surtout — c'est une marque qui ne fait que du tennis. Pas de football, pas de running. Uniquement le tennis."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Ça fait vraiment une différence ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Pour un joueur exigeant, oui. Chaque détail de coupe a été pensé pour le tennis — le mouvement du bras au service, la chaleur sur terre battue. C'est un focus total que les grandes marques généralistes ne peuvent pas avoir."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> Ne jamais dénigrer la concurrence. Reconnaître leurs forces, puis positionner Auteuil sur son terrain propre : exclusivité tennis, niveau d'exécution, intention de design.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Scénario 03 — Méconnaissance</div>
+        <div class="scenario-title">"Je ne connais pas du tout cette marque."</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Auteuil... je ne connais pas. C'est récent ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Oui, c'est une marque parisienne encore jeune. Elle a été fondée par Jean Leclercq et John Mollanger — deux amis qui jouent au tennis depuis des années et qui sont aussi à l'origine de Cinquième Set, la boutique de l'Avenue Kléber. Ils avaient des parcours dans le sport et le luxe, et ils n'ont pas trouvé la marque qu'ils cherchaient. Alors ils l'ont créée."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Et ce Club House, c'est votre premier magasin ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Oui, c'est notre premier espace en propre. On est aussi présents chez Mouratoglou, au Paris Country Club, à Nice LTC — les clubs qui partagent notre vision. Mais ici, c'est l'endroit pour découvrir la marque dans son ensemble."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> L'histoire des fondateurs est un atout. L'ancrer dans le monde du tennis (Cinquième Set, les clubs partenaires) donne une crédibilité immédiate. Raconter, pas réciter.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Scénario 04 — Durabilité</div>
+        <div class="scenario-title">"C'est vraiment écolo ou c'est du marketing ?"</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Matières naturelles, fabriqué en Europe... c'est du discours ou c'est réel ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"C'est une vraie conviction. Tous nos produits sont fabriqués en Europe — pour réduire les émissions de transport, mais aussi pour contrôler la qualité à chaque étape. On utilise du Lyocell, du Modal CMC, du coton organique — des fibres naturelles choisies autant pour leur performance que pour leur empreinte réduite."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Et si le tissu s'abîme ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Nos pièces sont conçues pour être réparées. C'est dans l'ADN de la marque — on ne cherche pas à vous revendre quelque chose tous les six mois."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> Être concret, jamais moralisateur. Les engagements durabilité sont d'abord un argument de valeur — qualité, longévité — avant d'être un argument environnemental.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Scénario 05 — Style</div>
+        <div class="scenario-title">"C'est un peu sobre, non ? On ne voit pas la marque."</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Je trouve ça très sobre. On reconnaît à peine que c'est Auteuil."</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"C'est exactement l'intention. La marque se reconnaît à la coupe, à la matière, au tombé — pas au logo. C'est une vision de l'élégance discrète qui emprunte aux codes du luxe : les gens qui savent, savent."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Mais c'est comment qu'on reconnaît qu'on joue Auteuil alors ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"À la coupe Supercontour — elle est identifiable quand on la connaît. Et à la façon dont le vêtement bouge. Un autre joueur qui connaît la marque le reconnaîtra immédiatement. C'est plus sélectif qu'un grand logo, mais c'est aussi plus durable."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> La discrétion est un choix de positionnement luxe — pas un manque. C'est un argument de style à assumer avec conviction, pas à défendre.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEXIQUE ═══ -->
+<section class="section" id="lexique">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">À dire / À éviter</h2>
+  <p class="section-desc">Le vocabulaire construit la posture. Chaque mot compte.</p>
+
+  <div class="lex-header">
+    <span>❌ À éviter</span>
+    <span>✓ À dire</span>
+  </div>
+
+  <div class="lexique-grid">
+    <div class="lex-item"><div class="lex-avoid">"C'est un peu cher mais c'est de la qualité..."</div><div class="lex-use">"C'est 150€ — en Lyocell, fabriqué en Europe, conçu pour durer."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"On est mieux que Nike / Lacoste."</div><div class="lex-use">"On fait uniquement du tennis — c'est notre seul terrain."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"Est-ce que je peux vous aider ?" (dès l'entrée)</div><div class="lex-use">Un regard, un sourire. Laisser entrer. Attendre.</div></div>
+    <div class="lex-item"><div class="lex-avoid">"Vous avez quel budget ?"</div><div class="lex-use">"Vous jouez plutôt compétition ou club ?"</div></div>
+    <div class="lex-item"><div class="lex-avoid">"Je sais pas trop, faudrait demander..."</div><div class="lex-use">"Je vais vérifier pour vous donner une réponse précise."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"C'est notre meilleure vente."</div><div class="lex-use">"C'est la pièce que j'aurais recommandée pour votre jeu."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"On peut faire un geste sur le prix."</div><div class="lex-use">"Le prix est ce qu'il est — cohérent avec ce qu'on y met."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"Vous voulez acheter ?" / "Vous prenez ?"</div><div class="lex-use">"Essayez-le — c'est souvent là que tout se décide."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"C'est une petite marque pour l'instant."</div><div class="lex-use">"C'est une marque jeune — c'est précisément ce qui la rend intéressante."</div></div>
+    <div class="lex-item"><div class="lex-avoid">"C'est sobre" (sur la défensive)</div><div class="lex-use">"L'élégance chez nous passe par la coupe, pas par le logo. C'est un choix délibéré."</div></div>
+  </div>
+</section>
+
+<!-- ═══ MARKETING — QUESTIONS DIFFICILES ═══ -->
+<section class="section" id="marketing">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Questions difficiles</h2>
+  <p class="section-desc">Des questions légitimes qui méritent des réponses solides — pas des esquives.</p>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Question 01 — Visibilité</div>
+        <div class="scenario-title">"Vous n'avez pas de joueurs professionnels qui portent la marque ?"</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Les grandes marques tennis ont des Federer, des Nadal... vous n'avez personne ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"C'est un choix délibéré. Auteuil investit dans le produit, pas dans les contrats de sponsoring. Ce qui se retrouve dans la qualité d'exécution — les matières, la fabrication, les finitions. On préfère que la marque se prouve sur le court, pas sur un panneau publicitaire."</div></div>
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Mais ça ne nuit pas à la notoriété ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Sur le court terme, peut-être. Mais c'est aussi ce qui nous permet d'être dans les clubs les plus exigeants — Mouratoglou, Paris Country Club, Nice LTC — et de construire une relation directe avec les vrais joueurs. La notoriété qu'on cherche, c'est celle du bouche à oreille dans les clubs."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> "Cash in product, not in players." C'est une philosophie — l'argent va dans la qualité du produit, pas dans la visibilité. À assumer comme un choix fort, pas comme un manque de moyens.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Question 02 — Crédibilité</div>
+        <div class="scenario-title">"Une marque de tennis fondée par des gens du marketing... c'est du tennis ou du business ?"</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Ce sont des businessmen ou des passionnés de tennis ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"Les deux — et c'est exactement ce qu'il fallait. Jean et John jouent au tennis depuis toujours, et ils ont travaillé chez Nike et dans l'industrie du sport et du luxe. Cinquième Set, qu'ils ont fondée avant Auteuil, est la référence du tennis premium à Paris depuis des années. Auteuil n'est pas née dans un bureau de stratégie — elle est née d'une frustration de joueurs."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> La combinaison passion + expertise professionnelle est un atout, pas une contradiction. Cinquième Set est la preuve de leur ancrage dans le monde du tennis.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Question 03 — Avenir</div>
+        <div class="scenario-title">"Vous allez tenir dans le temps ?"</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Beaucoup de marques se lancent et disparaissent. Vous en êtes où ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"On a choisi de grandir lentement et solidement — distribution sélective, pas de surproduction, fabrication européenne. On est présents dans les clubs les plus exigeants de France, et on ouvre à l'international en 2026. La stratégie, c'est la durabilité — au sens propre comme au sens figuré."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> La croissance maîtrisée est un signe de sérieux, pas de faiblesse. La distribution sélective et les partenaires clubs donnent de la crédibilité.</p></div>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-tag">Question 04 — Taille</div>
+        <div class="scenario-title">"On ne vous trouve nulle part — pas en ligne, pas dans les clubs habituels."</div>
+      </div>
+      <div class="scenario-toggle">+</div>
+    </div>
+    <div class="scenario-body">
+      <div class="dialogue">
+        <div class="line"><div class="line-speaker client">Client</div><div class="line-text client-text">"Je n'ai jamais entendu parler d'Auteuil. Vous êtes disponibles où ?"</div></div>
+        <div class="line"><div class="line-speaker staff">Vous</div><div class="line-text staff-text">"C'est voulu. On ne cherche pas à être partout — on choisit nos partenaires. Cinquième Set à Paris, le Mouratoglou Country Club à Biot, Nice LTC, le Paris Country Club. Et bien sûr notre site, auteuiltennis.com. Ici, c'est notre premier espace en propre. C'est le bon endroit pour découvrir la marque dans son ensemble."</div></div>
+      </div>
+      <div class="tip-box"><p><strong>Clé :</strong> La distribution sélective est une stratégie — pas un manque de moyens. C'est cohérent avec le positionnement premium.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUIZ ═══ -->
+<section class="section" id="quiz">
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+  </div>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Quiz — 25 questions</h2>
+  <p class="section-desc">Tous les thèmes couverts. Pas de pression — c'est pour apprendre et consolider.</p>
+
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:500;">🎾 ADN & Fondateurs</div>
+
+  <div class="quiz-card" id="q1">
+    <div class="quiz-q">Qui sont les fondateurs d'Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q1',this,false,'Non — Auteuil a été fondée par Jean Leclercq et John Mollanger.')">Pierre Dupont et Marc Lefebvre, anciens joueurs professionnels.</button>
+      <button class="quiz-option" onclick="answer('q1',this,true,'Correct. Jean Leclercq et John Mollanger — deux amis de longue date, joueurs de tennis passionnés, également fondateurs de Cinquième Set Avenue Kléber.')">Jean Leclercq et John Mollanger, également fondateurs de Cinquième Set.</button>
+      <button class="quiz-option" onclick="answer('q1',this,false,'Non — les fondateurs sont Jean Leclercq et John Mollanger.')">Jean-Marc Auteuil et Philippe Tennis, créateurs de mode sportive.</button>
+    </div>
+    <div class="quiz-feedback" id="q1-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q2">
+    <div class="quiz-q">Avant de fonder Auteuil, dans quels secteurs ont travaillé les fondateurs ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q2',this,false,'Non — ils ont des parcours dans le sport et le luxe, pas dans la finance.')">Finance et conseil en stratégie.</button>
+      <button class="quiz-option" onclick="answer('q2',this,false,'Pas tout à fait — ils ont aussi une expérience dans le luxe au-delà du tennis.')">Uniquement dans le tennis professionnel comme entraîneurs.</button>
+      <button class="quiz-option" onclick="answer('q2',this,true,'Exact. Ils ont travaillé notamment chez Nike, Asics et dans l'univers du luxe (Bang & Olufsen). Ce bagage nourrit chaque décision de la marque.')">Sport et luxe — notamment Nike, Asics, et des marques comme Bang & Olufsen.</button>
+    </div>
+    <div class="quiz-feedback" id="q2-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q3">
+    <div class="quiz-q">Qu'est-ce que Cinquième Set ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q3',this,true,'Exact. Cinquième Set est la boutique tennis premium de l'Avenue Kléber à Paris, fondée par Jean et John avant Auteuil. C'est leur ancrage dans le monde du tennis.')">La boutique tennis de référence de l'Avenue Kléber à Paris, fondée par Jean et John.</button>
+      <button class="quiz-option" onclick="answer('q3',this,false,'Non — Cinquième Set est une boutique tennis, pas une collection.')">La cinquième collection capsule d'Auteuil Tennis.</button>
+      <button class="quiz-option" onclick="answer('q3',this,false,'Non — c'est une boutique à Paris, pas un club.')">Un club de tennis privé dans le 16ème arrondissement de Paris.</button>
+    </div>
+    <div class="quiz-feedback" id="q3-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q4">
+    <div class="quiz-q">Quelle est la vision fondamentale d'Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q4',this,false,'Non — Auteuil ne cherche pas à être la marque la plus accessible, mais la plus exigeante.')">Rendre le tennis accessible à tous les niveaux de joueurs.</button>
+      <button class="quiz-option" onclick="answer('q4',this,true,'Exactement. Auteuil comble le vide d'une marque performance-luxe dans le tennis — le seul grand sport sans cette catégorie.')">Redonner au tennis son statut de sport le plus élégant, avec une marque performance-luxe inexistante jusqu'ici.</button>
+      <button class="quiz-option" onclick="answer('q4',this,false,'Non — Auteuil n'est pas une marque de streetwear.')">Créer une marque de streetwear inspirée du tennis pour toucher les non-joueurs.</button>
+    </div>
+    <div class="quiz-feedback" id="q4-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q5">
+    <div class="quiz-q">Quelles sont les trois valeurs fondamentales de la marque ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q5',this,false,'Non — Innovation n'est pas une des trois valeurs nommées.')">Innovation, Excellence, Durabilité.</button>
+      <button class="quiz-option" onclick="answer('q5',this,true,'Parfait. Tennis comme style de vie, Performance de luxe, Fair play — les trois piliers de la marque.')">Le tennis comme style de vie, Performance de luxe, Fair play.</button>
+      <button class="quiz-option" onclick="answer('q5',this,false,'Non — Tradition n'est pas une valeur Auteuil.')">Tradition, Élégance, Performance.</button>
+    </div>
+    <div class="quiz-feedback" id="q5-feedback"></div>
+  </div>
+
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:32px 0 24px;font-weight:500;">🧵 Collections & Matières</div>
+
+  <div class="quiz-card" id="q6">
+    <div class="quiz-q">Le Polo Paris est fabriqué en quelle matière principale ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q6',this,false,'Non — le Modal CMC est utilisé pour la Robe Roma, pas pour le polo.')">Modal CMC</button>
+      <button class="quiz-option" onclick="answer('q6',this,true,'Correct. Le Polo Paris est en Lyocell — une fibre naturelle dérivée du bambou, thermorégulante et inodore. La Robe Roma est en Modal CMC.')">Lyocell</button>
+      <button class="quiz-option" onclick="answer('q6',this,false,'Non — Auteuil évite le polyester dans sa collection Court. C'est un argument différenciant.')">Polyester haute performance</button>
+    </div>
+    <div class="quiz-feedback" id="q6-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q7">
+    <div class="quiz-q">La Robe Roma est fabriquée en quelle matière ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q7',this,false,'Non — le Lyocell est la matière du Polo Paris.')">Lyocell</button>
+      <button class="quiz-option" onclick="answer('q7',this,false,'Non — la collection Club utilise le coton organique, pas la collection Court.')">Coton organique</button>
+      <button class="quiz-option" onclick="answer('q7',this,true,'Exact. La Robe Roma est en Modal CMC — une fibre douce, naturelle, à faible empreinte carbone. Ne pas confondre avec le Lyocell du Polo Paris.')">Modal CMC</button>
+    </div>
+    <div class="quiz-feedback" id="q7-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q8">
+    <div class="quiz-q">La collection Club utilise quelle matière principale ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q8',this,true,'Correct. La collection Club — sweat, pantalon, casquette — est en coton organique, pour le confort et la décontraction.')">Coton organique</button>
+      <button class="quiz-option" onclick="answer('q8',this,false,'Non — le Lyocell est réservé à la collection Court, notamment le Polo Paris.')">Lyocell</button>
+      <button class="quiz-option" onclick="answer('q8',this,false,'Non — Auteuil n'utilise pas de laine mérinos.')">Laine mérinos</button>
+    </div>
+    <div class="quiz-feedback" id="q8-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q9">
+    <div class="quiz-q">Qu'est-ce que la technologie Supercontour ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q9',this,false,'Supercontour n'est pas un tissu — c'est une philosophie de coupe.')">Un tissu technique imperméable de la collection Court.</button>
+      <button class="quiz-option" onclick="answer('q9',this,true,'Exactement. Supercontour est une philosophie d'ajustement : épaules structurées pour le mouvement, hanches cintrées pour l'allure, liberté totale sur le court.')">Une philosophie de coupe : épaules mobiles, hanches cintrées, mobilité maximale sans sacrifier l'allure.</button>
+      <button class="quiz-option" onclick="answer('q9',this,false,'Non — Supercontour n'est pas un logo.')">Le logo discret présent sur toutes les pièces Court.</button>
+    </div>
+    <div class="quiz-feedback" id="q9-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q10">
+    <div class="quiz-q">Quel est le prix du Polo Paris et de la Robe Roma ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q10',this,false,'Non — les prix sont différents.')">Polo Paris 120€, Robe Roma 180€</button>
+      <button class="quiz-option" onclick="answer('q10',this,true,'Exact. Polo Paris à 150€, Robe Roma à 200€. Ces prix doivent être annoncés naturellement, sans excuse.')">Polo Paris 150€, Robe Roma 200€</button>
+      <button class="quiz-option" onclick="answer('q10',this,false,'Non — les prix sont plus élevés.')">Polo Paris 95€, Robe Roma 150€</button>
+    </div>
+    <div class="quiz-feedback" id="q10-feedback"></div>
+  </div>
+
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:32px 0 24px;font-weight:500;">🎨 Style & Intemporalité</div>
+
+  <div class="quiz-card" id="q11">
+    <div class="quiz-q">Quelles sont les trois couleurs signature de la marque ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q11',this,false,'Non — il n'y a pas de rouge ni de vert dans la palette Auteuil.')">Blanc, Rouge et Vert Roland-Garros</button>
+      <button class="quiz-option" onclick="answer('q11',this,true,'Exact. Blanc 1930, Bleu Auteuil et Bleu Night Session — une palette resserrée qui raconte l'histoire du tennis.')">Blanc 1930, Bleu Auteuil et Bleu Night Session</button>
+      <button class="quiz-option" onclick="answer('q11',this,false,'Non — Auteuil n'utilise pas de noir ni d'or dans sa palette signature.')">Noir, Blanc et Or</button>
+    </div>
+    <div class="quiz-feedback" id="q11-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q12">
+    <div class="quiz-q">Un client dit "c'est très sobre, on ne voit presque pas la marque." Quelle est la bonne réponse ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q12',this,false,'S'excuser ou minimiser affaiblit la posture. La discrétion est un choix fort.')">S'excuser et expliquer que la marque est encore jeune.</button>
+      <button class="quiz-option" onclick="answer('q12',this,false,'Promettre une évolution n'est pas pertinent — la discrétion est une conviction.')">Promettre que les prochaines collections seront plus visibles.</button>
+      <button class="quiz-option" onclick="answer('q12',this,true,'Exactement. La discrétion est un choix de positionnement luxe. La marque se reconnaît à la coupe et aux matières — pas au logo.')">Assumer avec conviction : la marque se reconnaît à la coupe Supercontour, pas au logo. C'est un choix délibéré d'élégance discrète.</button>
+    </div>
+    <div class="quiz-feedback" id="q12-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q13">
+    <div class="quiz-q">Que signifie "intemporel" dans l'approche design d'Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q13',this,false,'Non — Auteuil n'est pas une marque vintage ou rétro.')">Reproduire les designs des grandes tenues de tennis des années 70-80.</button>
+      <button class="quiz-option" onclick="answer('q13',this,true,'Exact. Pas de logo envahissant, pas de couleur criarde, pas de détail qui date. Une pièce Auteuil doit être aussi juste dans 10 ans qu'aujourd'hui.')">Concevoir des pièces sans logo ostentatoire ni tendance passagère, aussi pertinentes dans 10 ans qu'aujourd'hui.</button>
+      <button class="quiz-option" onclick="answer('q13',this,false,'Non — Auteuil n'est pas une marque classique traditionnelle.')">S'inspirer uniquement du tennis classique sans innovation.</button>
+    </div>
+    <div class="quiz-feedback" id="q13-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q14">
+    <div class="quiz-q">Comment guider un client pour qu'il sente la qualité d'une pièce Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q14',this,false,'Non — lire l'étiquette n'est pas la bonne approche. C'est le toucher et la coupe qui font la démonstration.')">Lui lire l'étiquette avec la composition et le pays de fabrication.</button>
+      <button class="quiz-option" onclick="answer('q14',this,true,'Parfait. Guider le toucher : finitions de couture, tombé du tissu, poids de la matière, absence de logo ostentatoire. Le produit parle.')">Lui faire sentir le tombé du tissu, les finitions de couture, le poids de la matière — et lui expliquer ce qu'il touche.</button>
+      <button class="quiz-option" onclick="answer('q14',this,false,'Non — montrer des photos ne remplace pas l'expérience physique du produit.')">Lui montrer des photos de joueurs portant la marque.</button>
+    </div>
+    <div class="quiz-feedback" id="q14-feedback"></div>
+  </div>
+
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:32px 0 24px;font-weight:500;">💬 Ton & Approche client</div>
+
+  <div class="quiz-card" id="q15">
+    <div class="quiz-q">Un client entre dans le Club House. Quelle est la bonne première action ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q15',this,false,'Trop tôt — le client n'a pas eu le temps de respirer l'espace. Cela crée une pression immédiate.')">S'avancer vers lui et proposer de l'aide dès qu'il franchit la porte.</button>
+      <button class="quiz-option" onclick="answer('q15',this,true,'Correct. Laisser entrer, observer discrètement. Un regard, un sourire, une phrase courte après 30-60 secondes.')">Laisser entrer, puis un sourire discret et une phrase courte après quelques secondes.</button>
+      <button class="quiz-option" onclick="answer('q15',this,false,'Trop passif — le client pourrait se sentir ignoré.')">Attendre que le client vienne vous voir.</button>
+    </div>
+    <div class="quiz-feedback" id="q15-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q16">
+    <div class="quiz-q">Quelle question permet de mieux qualifier un client avant de recommander ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q16',this,false,'Demander le budget d'emblée est intrusif et positionne la conversation sur le prix plutôt que sur le joueur.')">« Vous avez quel budget ? »</button>
+      <button class="quiz-option" onclick="answer('q16',this,true,'Parfait. Une question sur le jeu montre que vous écoutez et que votre conseil sera personnalisé — pas générique.')">« Vous jouez en club ? Plutôt terre battue ou dur ? »</button>
+      <button class="quiz-option" onclick="answer('q16',this,false,'Trop direct — cela crée une pression d'achat immédiate.')">« Vous cherchez quelque chose en particulier à acheter ? »</button>
+    </div>
+    <div class="quiz-feedback" id="q16-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q17">
+    <div class="quiz-q">Comment annoncer le prix d'une pièce Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q17',this,false,'S'excuser affaiblit immédiatement la valeur perçue. Ne jamais introduire le prix par une justification défensive.')">« C'est 150€... je sais c'est cher, mais c'est vraiment de la qualité. »</button>
+      <button class="quiz-option" onclick="answer('q17',this,true,'Exact. Annoncer naturellement, laisser un silence, puis si besoin nommer les raisons concrètes — jamais sur la défensive.')">« Le Polo Paris est à 150€. » — naturellement, puis silence.</button>
+      <button class="quiz-option" onclick="answer('q17',this,false,'Proposer une remise d'emblée dévalue la marque.')">« C'est 150€ mais on peut peut-être s'arranger. »</button>
+    </div>
+    <div class="quiz-feedback" id="q17-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q18">
+    <div class="quiz-q">Un client hésite. Quelle est la meilleure façon de conclure ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q18',this,false,'Forcer la décision crée une pression négative.')">Lui demander directement : « Alors, vous le prenez ? »</button>
+      <button class="quiz-option" onclick="answer('q18',this,true,'Parfait. L'essayage est souvent le moment de vérité. Et laisser une porte ouverte montre de la confiance, pas du désespoir.')">« Essayez-le — c'est souvent là que tout se décide. » Et lui laisser de l'espace.</button>
+      <button class="quiz-option" onclick="answer('q18',this,false,'Proposer une remise sans raison dévalorise la marque.')">Lui proposer une remise pour faciliter la décision.</button>
+    </div>
+    <div class="quiz-feedback" id="q18-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q19">
+    <div class="quiz-q">Comment qualifier la posture idéale d'un vendeur Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q19',this,false,'Non — chaleureux mais pas servile. Il faut de la confiance.')">Chaleureux et toujours d'accord avec le client.</button>
+      <button class="quiz-option" onclick="answer('q19',this,false,'Non — froid et expert crée de la distance. Ce n'est pas l'esprit club.')">Froid et expert pour inspirer le respect.</button>
+      <button class="quiz-option" onclick="answer('q19',this,true,'Exactement. Délibéré — confiant, informé, sincèrement passionné par le tennis. Ni servile ni condescendant.')">Délibéré — confiant sans être arrogant, sincèrement passionné, jamais sur la défensive.</button>
+    </div>
+    <div class="quiz-feedback" id="q19-feedback"></div>
+  </div>
+
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:32px 0 24px;font-weight:500;">📣 Marketing & Questions difficiles</div>
+
+  <div class="quiz-card" id="q20">
+    <div class="quiz-q">Pourquoi Auteuil n'a pas de joueurs professionnels comme ambassadeurs ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q20',this,false,'Ce n'est pas la bonne lecture — c'est un choix stratégique fort, pas une contrainte.')">La marque n'a pas encore les moyens de se payer des ambassadeurs.</button>
+      <button class="quiz-option" onclick="answer('q20',this,true,'Exact. "Cash in product, not in players" — l'argent va dans la qualité du produit, pas dans les contrats de sponsoring. C'est une conviction.')">L'argent est investi dans le produit, pas dans le sponsoring. La qualité parle d'elle-même.</button>
+      <button class="quiz-option" onclick="answer('q20',this,false,'Non — la visibilité reste un objectif, mais construite différemment.')">La marque ne cherche pas à être visible.</button>
+    </div>
+    <div class="quiz-feedback" id="q20-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q21">
+    <div class="quiz-q">Comment répondre à "Pourquoi Auteuil plutôt que Nike ou Lacoste ?" </div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q21',this,false,'Dénigrer la concurrence est contre-productif et nuit à l'image de la marque.')">« Nike et Lacoste, c'est pour les joueurs ordinaires. »</button>
+      <button class="quiz-option" onclick="answer('q21',this,true,'Parfait. Reconnaître les forces de la concurrence, puis positionner Auteuil sur son terrain propre : focus exclusif tennis, niveau d'exécution, intention de design.')">Reconnaître leurs forces, puis expliquer qu'Auteuil est la seule marque 100% tennis avec ce niveau d'exécution luxe.</button>
+      <button class="quiz-option" onclick="answer('q21',this,false,'C'est une non-réponse. Le client mérite une vraie réponse.')">« C'est une question de goût, chacun ses préférences. »</button>
+    </div>
+    <div class="quiz-feedback" id="q21-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q22">
+    <div class="quiz-q">Où trouve-t-on Auteuil en dehors du Club House ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q22',this,false,'Non — Auteuil n'est pas en grande distribution. C'est une distribution sélective.')">Dans les grandes surfaces de sport type Décathlon ou Go Sport.</button>
+      <button class="quiz-option" onclick="answer('q22',this,true,'Exact. Distribution sélective : Cinquième Set, Mouratoglou Country Club, Nice LTC, Paris Country Club — et auteuiltennis.com.')">Cinquième Set, Mouratoglou Country Club, Nice LTC, Paris Country Club, et auteuiltennis.com.</button>
+      <button class="quiz-option" onclick="answer('q22',this,false,'Non — Auteuil n'est pas encore dans les grands magasins.')">Au Bon Marché et aux Galeries Lafayette Sport.</button>
+    </div>
+    <div class="quiz-feedback" id="q22-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q23">
+    <div class="quiz-q">Un client demande "C'est vraiment écolo ou c'est du marketing ?" — quelle est la meilleure réponse ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q23',this,false,'Trop défensif et vague. Il faut être concret.')">« Oui bien sûr, on est très engagés pour l'environnement. »</button>
+      <button class="quiz-option" onclick="answer('q23',this,true,'Parfait. Concret, factuel, jamais moralisateur. Les engagements durabilité sont d'abord un argument de qualité.')">Nommer les faits : fabrication européenne, fibres naturelles Lyocell/Modal/coton organique, conçu pour être réparé et durer.</button>
+      <button class="quiz-option" onclick="answer('q23',this,false,'Trop moralisateur — ce n'est pas l'esprit Auteuil.')">Expliquer longuement l'impact carbone du textile et les dangers du fast fashion.</button>
+    </div>
+    <div class="quiz-feedback" id="q23-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q24">
+    <div class="quiz-q">La collection Club, c'est pour qui et pour quand ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q24',this,false,'Non — la collection Club n'est pas une collection de compétition.')">Les joueurs de haut niveau en compétition sur les grands circuits.</button>
+      <button class="quiz-option" onclick="answer('q24',this,true,'Exact. La collection Club, c'est l'avant et l'après tennis — échauffement, après-douche, ville. Unisexe, coton organique, coupes généreuses.')">Tous les joueurs pour l'avant et l'après tennis — échauffement, club, ville. Unisexe et décontracté.</button>
+      <button class="quiz-option" onclick="answer('q24',this,false,'Non — la collection Club n'est pas réservée aux juniors.')">Les jeunes joueurs et les enfants pratiquant le tennis.</button>
+    </div>
+    <div class="quiz-feedback" id="q24-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="q25">
+    <div class="quiz-q">Quelle phrase résume le mieux la philosophie de vente chez Auteuil ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer('q25',this,false,'Non — "toujours conclure" est une approche agressive, pas l'esprit Auteuil.')">« Always be closing — toujours conclure la vente. »</button>
+      <button class="quiz-option" onclick="answer('q25',this,false,'Non — l'objectif n'est pas de maximiser le panier mais de créer une relation durable.')">« Proposer systématiquement plusieurs articles pour maximiser le panier moyen. »</button>
+      <button class="quiz-option" onclick="answer('q25',this,true,'Parfait. C'est exactement l'esprit : un ami passionné qui recommande sincèrement, pas un vendeur qui pousse. Le client repart avec le sentiment que vous avez pensé à lui.')">« Parler à chaque client comme à un ami joueur de tennis — recommander ce qu'on aime, pas ce qu'on veut vendre. »</button>
+    </div>
+    <div class="quiz-feedback" id="q25-feedback"></div>
+  </div>
+
+  <div id="quiz-score" style="display:none; margin-top:32px; padding:32px; background:rgba(27,45,79,0.5); border:1px solid rgba(201,169,110,0.3); text-align:center;">
+    <div style="font-family:'Playfair Display',serif; font-size:28px; color:var(--blanc1930); margin-bottom:8px;" id="score-text"></div>
+    <div style="font-size:12px; color:var(--text-light); margin-top:8px;" id="score-sub"></div>
+  </div>
+
+</section>
+
+<footer>Auteuil Tennis &nbsp;·&nbsp; Formation usage interne &nbsp;·&nbsp; Club House, 7 Rue Gustave Courbet, Paris XVI</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleScenario(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.scenario-toggle');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.scenario-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.scenario-toggle').forEach(t => t.classList.remove('open'));
+    if (!isOpen) {
+      body.classList.add('open');
+      toggle.classList.add('open');
+    }
+  }
+
+  let quizScore = 0;
+  let quizAnswered = 0;
+  const quizTotal = 25;
+
+  function answer(qId, btn, isCorrect, feedback) {
+    const card = document.getElementById(qId);
+    const options = card.querySelectorAll('.quiz-option');
+    const feedbackEl = document.getElementById(qId + '-feedback');
+    options.forEach(o => o.disabled = true);
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    if (!isCorrect) {
+      options.forEach(o => {
+        if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+      });
+    }
+    feedbackEl.textContent = feedback;
+    feedbackEl.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    if (isCorrect) quizScore++;
+    quizAnswered++;
+    if (quizAnswered === quizTotal) {
+      const scoreEl = document.getElementById('quiz-score');
+      const pct = Math.round((quizScore / quizTotal) * 100);
+      scoreEl.style.display = 'block';
+      document.getElementById('score-text').textContent = quizScore + ' / ' + quizTotal + ' — ' + pct + '%';
+      let msg = pct >= 90 ? 'Excellent — vous êtes prêt(e) pour le Club House. 🎾' :
+                pct >= 70 ? 'Bon résultat — relisez les sections sur les points manqués.' :
+                'Reprenez la formation avant de recommencer.';
+      document.getElementById('score-sub').textContent = msg;
+      scoreEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
+</body>
+</html>
